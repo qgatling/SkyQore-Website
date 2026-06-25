@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,21 +8,31 @@ const inter = Inter({
   display: "swap",
 });
 
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "SkyQore | Replace Manual Work. Scale What Matters.",
+  title: "SkyQore | Custom Software Built Around Your Business",
   description:
-    "SkyQore builds custom software that eliminates manual processes, reduces costly errors, and unlocks growth for modern businesses. Used by 500+ companies across North America.",
+    "SkyQore builds affordable custom software, AI-powered apps, portals, dashboards, CRMs, and workflow tools that help businesses save time, make money, and eliminate headaches.",
   keywords: [
-    "custom software development",
+    "SkyQore",
+    "custom software",
+    "business software",
+    "SaaS development",
     "workflow automation",
-    "business process automation",
+    "AI integration",
     "custom CRM",
-    "operations software",
+    "client portal",
+    "dashboard development",
   ],
   openGraph: {
-    title: "SkyQore | Replace Manual Work. Scale What Matters.",
+    title: "SkyQore | Custom Software Built Around Your Business",
     description:
-      "Custom software that eliminates manual work and drives business growth.",
+      "Custom software built around how your business actually works.",
     type: "website",
   },
 };
@@ -33,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
       <body className={inter.className}>{children}</body>
     </html>
   );

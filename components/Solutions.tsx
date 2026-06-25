@@ -1,188 +1,147 @@
-"use client";
+import Link from "next/link";
 
-import { motion } from "framer-motion";
-import {
-  Workflow,
-  Database,
-  Globe,
-  BarChart3,
-  Plug,
-  Users,
-  ArrowRight,
-} from "lucide-react";
-
-const solutions = [
+const services = [
   {
-    icon: Workflow,
-    color: "blue",
-    title: "Workflow Automation",
-    body: "Replace approval chains, document routing, and status tracking with automated flows that run themselves — 24/7, without reminders.",
-    outcomes: ["90% fewer approval delays", "Zero missed handoffs"],
+    title: "Service Request App",
+    desc: "Let customers submit requests, upload photos, track status, and receive automatic updates without calling your office.",
+    icon: (
+      <svg viewBox="0 0 24 24" style={{ width: 22, height: 22, fill: "currentColor" }}>
+        <path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z" />
+      </svg>
+    ),
   },
   {
-    icon: Database,
-    color: "violet",
-    title: "Data Management Platforms",
-    body: "Centralize data scattered across spreadsheets and siloed tools into a single source of truth with clean dashboards built for your team.",
-    outcomes: ["One version of the truth", "Real-time visibility"],
+    title: "Work Order System",
+    desc: "Assign jobs, manage field technicians, track checklist completion, attach photos, and reduce missed tasks across your team.",
+    icon: (
+      <svg viewBox="0 0 24 24" style={{ width: 22, height: 22, fill: "currentColor" }}>
+        <path d="M4 6h18V4H4c-1.1 0-2 .9-2 2v13H0v3h14v-3H4V6zm20 2h-8c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h8c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-6v-7h6v7z" />
+      </svg>
+    ),
   },
   {
-    icon: Globe,
-    color: "indigo",
-    title: "Customer & Client Portals",
-    body: "Give clients a branded, self-service experience to submit requests, track project progress, and access documents — on their schedule.",
-    outcomes: ["40% fewer support emails", "Higher client satisfaction"],
+    title: "Client Portal",
+    desc: "Give customers one secure place to submit project information, check progress, sign off, and communicate with your team.",
+    icon: (
+      <svg viewBox="0 0 24 24" style={{ width: 22, height: 22, fill: "currentColor" }}>
+        <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
+      </svg>
+    ),
   },
   {
-    icon: BarChart3,
-    color: "cyan",
-    title: "Reporting & Analytics",
-    body: "Turn raw operational data into executive-ready dashboards that update in real time — no more building manual summaries before every board meeting.",
-    outcomes: ["Live reporting in seconds", "Better decisions, faster"],
+    title: "Custom CRM",
+    desc: "Track incoming leads, customers, custom quotes, automated follow-ups, and customer payments — all in one place built for your workflow.",
+    icon: (
+      <svg viewBox="0 0 24 24" style={{ width: 22, height: 22, fill: "currentColor" }}>
+        <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" />
+      </svg>
+    ),
   },
   {
-    icon: Plug,
-    color: "emerald",
-    title: "Integrations & APIs",
-    body: "Connect your existing tools and eliminate double-entry across systems. We build the middleware that makes your software stack actually work together.",
-    outcomes: ["Eliminate duplicate data entry", "Every tool in sync"],
+    title: "Business Dashboard",
+    desc: "See the numbers, jobs, active requests, team progress, and operational activity that matter most to your business — in real time.",
+    icon: (
+      <svg viewBox="0 0 24 24" style={{ width: 22, height: 22, fill: "currentColor" }}>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+      </svg>
+    ),
   },
   {
-    icon: Users,
-    color: "orange",
-    title: "Operations Software",
-    body: "Replace generic tools that almost fit with purpose-built software designed around your exact process — the way your business actually works.",
-    outcomes: ["Built for your workflow", "Faster team adoption"],
+    title: "Custom AI Workflow Tools",
+    desc: "Use AI to automatically summarize requests, route alerts to your team, draft email responses, and eliminate repetitive manual admin work.",
+    icon: (
+      <svg viewBox="0 0 24 24" style={{ width: 22, height: 22, fill: "currentColor" }}>
+        <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z" />
+      </svg>
+    ),
   },
 ];
 
-const colorMap: Record<string, { bg: string; icon: string; badge: string; border: string }> = {
-  blue: {
-    bg: "from-blue-50 to-blue-100/60",
-    icon: "bg-blue-600",
-    badge: "bg-blue-50 text-blue-700 border-blue-100",
-    border: "border-blue-100 hover:border-blue-200",
-  },
-  violet: {
-    bg: "from-violet-50 to-violet-100/60",
-    icon: "bg-violet-600",
-    badge: "bg-violet-50 text-violet-700 border-violet-100",
-    border: "border-violet-100 hover:border-violet-200",
-  },
-  indigo: {
-    bg: "from-indigo-50 to-indigo-100/60",
-    icon: "bg-indigo-600",
-    badge: "bg-indigo-50 text-indigo-700 border-indigo-100",
-    border: "border-indigo-100 hover:border-indigo-200",
-  },
-  cyan: {
-    bg: "from-cyan-50 to-cyan-100/60",
-    icon: "bg-cyan-600",
-    badge: "bg-cyan-50 text-cyan-700 border-cyan-100",
-    border: "border-cyan-100 hover:border-cyan-200",
-  },
-  emerald: {
-    bg: "from-emerald-50 to-emerald-100/60",
-    icon: "bg-emerald-600",
-    badge: "bg-emerald-50 text-emerald-700 border-emerald-100",
-    border: "border-emerald-100 hover:border-emerald-200",
-  },
-  orange: {
-    bg: "from-orange-50 to-orange-100/60",
-    icon: "bg-orange-500",
-    badge: "bg-orange-50 text-orange-700 border-orange-100",
-    border: "border-orange-100 hover:border-orange-200",
-  },
-};
-
 export default function Solutions() {
   return (
-    <section id="solutions" className="section-padding bg-slate-50">
-      <div className="container-max">
+    <section id="services" style={{ padding: "7rem 0", background: "rgba(6,9,22,0.5)" }}>
+      <div className="w-full max-w-[1280px] mx-auto px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block text-xs font-bold uppercase tracking-widest text-violet-600 mb-3">
-            What We Build
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight mb-5">
-            Software that replaces the work,{" "}
-            <br className="hidden sm:block" />
-            not just the tool.
+        <div style={{ textAlign: "center", maxWidth: 680, margin: "0 auto 5rem auto" }}>
+          <h2
+            style={{
+              fontFamily: "var(--font-outfit), sans-serif",
+              fontSize: "clamp(1.8rem, 3vw, 2.8rem)",
+              fontWeight: 900,
+              letterSpacing: "-0.75px",
+              marginBottom: "1rem",
+            }}
+          >
+            What We Can <span className="text-gradient">Build For You</span>
           </h2>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto">
-            Off-the-shelf software was built for someone else's business. We build for yours.
+          <p style={{ fontSize: "1.1rem", color: "#8A9ABB", lineHeight: 1.7 }}>
+            If your business has a repeatable process, we can help turn it into a simple custom app
+            or software system.
           </p>
         </div>
 
-        {/* Cards grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {solutions.map((sol, i) => {
-            const colors = colorMap[sol.color];
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: i * 0.08, duration: 0.5, ease: "easeOut" }}
-                whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                className={`relative bg-white rounded-2xl p-7 border ${colors.border} shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col gap-5`}
-              >
-                {/* Icon */}
-                <div className={`w-12 h-12 rounded-xl ${colors.icon} flex items-center justify-center shadow-sm`}>
-                  <sol.icon size={22} className="text-white" />
-                </div>
-
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="font-bold text-slate-900 text-lg mb-2">{sol.title}</h3>
-                  <p className="text-slate-500 text-sm leading-relaxed">{sol.body}</p>
-                </div>
-
-                {/* Outcomes */}
-                <div className="flex flex-wrap gap-2">
-                  {sol.outcomes.map((o) => (
-                    <span
-                      key={o}
-                      className={`text-xs font-semibold px-3 py-1 rounded-full border ${colors.badge}`}
-                    >
-                      {o}
-                    </span>
-                  ))}
-                </div>
-
-                {/* CTA link */}
-                <a
-                  href="#contact"
-                  className="group flex items-center gap-1 text-sm font-bold text-slate-400 hover:text-blue-600 transition-colors"
-                >
-                  Learn more
-                  <ArrowRight
-                    size={15}
-                    className="group-hover:translate-x-1 transition-transform"
-                  />
-                </a>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-center mt-12"
+        {/* Grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "1.5rem",
+          }}
+          className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
         >
-          <p className="text-slate-500 mb-4 text-sm">
-            Don't see your exact use case? We've built for industries from healthcare to logistics.
-          </p>
-          <a href="#contact" className="btn-primary">
-            Tell Us What You Need
-            <ArrowRight size={16} />
-          </a>
-        </motion.div>
+          {services.map((svc, i) => (
+            <article
+              key={i}
+              className="glass-card"
+              style={{
+                padding: "2.25rem",
+                display: "flex",
+                flexDirection: "column",
+                background: "rgba(10,14,36,0.75)",
+              }}
+            >
+              {/* Icon */}
+              <div
+                style={{
+                  width: 46,
+                  height: 46,
+                  borderRadius: 10,
+                  background: "rgba(56,182,255,0.08)",
+                  border: "1px solid rgba(56,182,255,0.15)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#38B6FF",
+                  marginBottom: "1.4rem",
+                  flexShrink: 0,
+                }}
+              >
+                {svc.icon}
+              </div>
+              <h3
+                style={{
+                  fontFamily: "var(--font-outfit), sans-serif",
+                  fontSize: "1.15rem",
+                  fontWeight: 800,
+                  marginBottom: "0.75rem",
+                  color: "#F0F4FF",
+                }}
+              >
+                {svc.title}
+              </h3>
+              <p style={{ fontSize: "0.9rem", color: "#8A9ABB", lineHeight: 1.68, flexGrow: 1, marginBottom: "1.75rem" }}>
+                {svc.desc}
+              </p>
+              <Link
+                href="#contact"
+                style={{ display: "inline-flex", alignItems: "center", gap: "0.3rem", fontSize: "0.875rem", fontWeight: 600, color: "#38B6FF", marginTop: "auto", transition: "all 0.18s" }}
+                className="hover:text-white hover:gap-2"
+              >
+                Book a Consultation About This ›
+              </Link>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
